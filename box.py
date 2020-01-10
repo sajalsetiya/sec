@@ -1,4 +1,3 @@
-
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QTextEdit, QPushButton, QFileDialog
 from PyQt5.QtGui import QIcon, QPixmap
@@ -22,7 +21,7 @@ class App(QWidget):
         self.setGeometry(self.left, self.top, self.width, self.height)
         lable  = QLabel('  Folder  ', self)
         lable.move(100,80)
-        text = QTextEdit('  ', self)
+        text = QTextEdit(self)
         text.resize(200,25)
         text.move(150,80)
 
@@ -48,11 +47,9 @@ class App(QWidget):
         self.show()
 
     def openFileNameDialog(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()",options=options)
-        if fileName:
-            print(fileName)
+        foldername = QFileDialog.getExistingDirectory(self, 'Select Folder')
+        print(foldername)
+
 
 
 
@@ -61,5 +58,4 @@ class App(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = App()
-
     sys.exit(app.exec_())
